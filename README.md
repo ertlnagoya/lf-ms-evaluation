@@ -65,8 +65,11 @@ reported.
 | Date | Venue / document | Title | reactor-c tag → commit (date) | Experiments |
 |------|------------------|-------|-------------------------------|-------------|
 | 2026-03 | Technical Paper (`TechnicalPaper-MS-v1.1.pdf`) | A Semantics-Preserving Master Scheduler for Lingua Franca | `ms-v1.0` / `v1.0` → `6a5ba2fc` (2026-03-12) | E1, E2, E3 |
-| 2026-04 | JSAE (自動車技術会) — _event/authors TBD_ | _title TBD_ | `ms-v1.0` → `6a5ba2fc` (2026-03-12) | E1, E2, E3 |
+| 2026-05 | [JSAE 2026 Annual Congress (Spring)](https://tech.jsae.or.jp/paperinfo/en/content/p202601.039/) / 自動車技術会 2026年春季大会 | A Semantics-Preserving Master Scheduler for Mixed-Criticality Control in Lingua Franca | `ms-v1.0` → `6a5ba2fc` (2026-03-12) | E1, E2, E3 |
 | 2026-06 | TCRS 2026 | Semantics-Preserving Controlled Degradation for Overload Control: Bounding Logical-Time Backlog in Lingua Franca | `ms-eval-v1.0` → `997a8df4` (2026-06-24) | E3, E4, E5, E6 |
+
+All three share the same authors: **Yutaka Matsubara** (Nagoya University);
+**Wenhung Kevin Huang**, **Akihito Iwai** (DENSO CORPORATION).
 
 To reproduce a publication's runtime exactly:
 `git -C reactor-c checkout <tag>` (e.g. `ms-eval-v1.0` for TCRS 2026), then build.
