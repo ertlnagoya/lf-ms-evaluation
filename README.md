@@ -66,6 +66,8 @@ sources from the `reactor-c` submodule (override with `REACTOR_C=/abs/path`).
   (application JSONL and MS log) used by the parsers.
 - [`README_ms_performance_test.md`](README_ms_performance_test.md) — reproducible
   test guide (E1/E2/E3) and tagged-artifact reproduction steps.
+- [`ms-eval/RUN_BAREMETAL_RPI.md`](ms-eval/RUN_BAREMETAL_RPI.md) — bare-metal
+  evaluation on Raspberry Pi 4/5 (timing hygiene, core isolation, natural 1 ms).
 - [`reactor-c/README_ms.md`](reactor-c/README_ms.md) — MS implementation summary
   (Phases 0–4), in the runtime submodule.
 
