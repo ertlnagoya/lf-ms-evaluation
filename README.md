@@ -74,6 +74,20 @@ All three share the same authors: **Yutaka Matsubara** (Nagoya University);
 To reproduce a publication's runtime exactly:
 `git -C reactor-c checkout <tag>` (e.g. `ms-eval-v1.0` for TCRS 2026), then build.
 
+### Evaluation platform (TCRS 2026)
+
+| Component | Detail |
+|-----------|--------|
+| Host | MacBook Air 15-inch (Apple M3, 2024); 8 cores (4P + 4E); macOS 26.5.1 |
+| Execution | Docker Desktop 29.5.3 — Linux VM kernel 6.12.76-linuxkit (aarch64), 8 vCPUs, ~8 GB RAM |
+| LF compiler | `lfc` 0.11.1-SNAPSHOT |
+| Runtime | reactor-c tag `ms-eval-v1.0` (`997a8df4`) |
+| Repeats | E4 = 15, E5 = 15, E6 = 20 per condition; means with 95% CIs |
+| Period | P = 10 ms on the virtualized host; period-independence checked over P ∈ {5, 10, 20} ms |
+
+The earlier Technical Paper / JSAE results (tag `ms-v1.0`) used a separate
+configuration (e.g. n = 30); see those papers for their setup.
+
 ## Documentation
 
 - [`ms-eval/README.md`](ms-eval/README.md) — evaluation suite details: quick
