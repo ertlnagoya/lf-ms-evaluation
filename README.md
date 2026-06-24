@@ -96,8 +96,9 @@ configuration (e.g. n = 30); see those papers for their setup.
   (application JSONL and MS log) used by the parsers.
 - [`README_ms_performance_test.md`](README_ms_performance_test.md) — reproducible
   test guide (E1/E2/E3) and tagged-artifact reproduction steps.
-- [`ms-eval/RUN_BAREMETAL_RPI.md`](ms-eval/RUN_BAREMETAL_RPI.md) — bare-metal
-  evaluation on Raspberry Pi 4/5 (timing hygiene, core isolation, natural 1 ms).
+- [`ms-eval/RUN_BAREMETAL_RPI.md`](ms-eval/RUN_BAREMETAL_RPI.md) (and
+  [`.ja`](ms-eval/RUN_BAREMETAL_RPI.ja.md)) — bare-metal evaluation on Raspberry
+  Pi: OS setup, PREEMPT_RT kernel, core isolation, run, and the natural 1 ms check.
 - [`reactor-c/README_ms.md`](reactor-c/README_ms.md) — MS implementation summary
   (Phases 0–4), in the runtime submodule.
 
