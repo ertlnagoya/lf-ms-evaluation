@@ -47,16 +47,29 @@ sources from the `reactor-c` submodule (override with `REACTOR_C=/abs/path`).
 
 ## Experiments
 
-- **E1** — MS runtime overhead (microbenchmark).
-- **E2** — high-criticality (HC) deadline miss-rate comparison across the LF
-  baseline and MS / MS+RT configurations.
-- **E3** — controlled degradation under overload (baseline / ms / degrade).
-- **E4** — overload validation: capacity model and period robustness
-  (`ms-eval/scripts/run_e4_e6_main.py`).
-- **E5** — backlog vs worker/load sweep, overload onset
-  (`ms-eval/scripts/run_e5_backlog_worker_sweep.py`).
-- **E6** — policy sensitivity: LC budget, degrade lag, ready-queue length
-  (`ms-eval/scripts/run_e6_policy_sensitivity.py`).
+| ID | Focus | Driver / script |
+|----|-------|-----------------|
+| E1 | MS runtime overhead (microbenchmark) | `run_e1.sh` |
+| E2 | HC deadline miss-rate: LF baseline vs MS / MS+RT | `run_e2.sh` |
+| E3 | Controlled degradation under overload (baseline / ms / degrade) | `run_e3.sh` |
+| E4 | Overload validation: capacity model + period robustness | `ms-eval/scripts/run_e4_e6_main.py` |
+| E5 | Backlog vs worker/load sweep (overload onset) | `ms-eval/scripts/run_e5_backlog_worker_sweep.py` |
+| E6 | Policy sensitivity: LC budget, degrade lag, ready-queue length | `ms-eval/scripts/run_e6_policy_sensitivity.py` |
+
+## Evaluated runtime (reactor-c) and publications
+
+The MS runtime under evaluation is the `reactor-c` submodule, pinned by tag. The
+table maps each publication to the runtime commit it used and the experiments it
+reported.
+
+| Date | Venue / document | Title | reactor-c tag → commit (date) | Experiments |
+|------|------------------|-------|-------------------------------|-------------|
+| 2026-03 | Technical Paper (`TechnicalPaper-MS-v1.1.pdf`) | A Semantics-Preserving Master Scheduler for Lingua Franca | `ms-v1.0` / `v1.0` → `6a5ba2fc` (2026-03-12) | E1, E2, E3 |
+| 2026-04 | JSAE (自動車技術会) — _event/authors TBD_ | _title TBD_ | `ms-v1.0` → `6a5ba2fc` (2026-03-12) | E1, E2, E3 |
+| 2026-06 | TCRS 2026 | Semantics-Preserving Controlled Degradation for Overload Control: Bounding Logical-Time Backlog in Lingua Franca | `ms-eval-v1.0` → `997a8df4` (2026-06-24) | E3, E4, E5, E6 |
+
+To reproduce a publication's runtime exactly:
+`git -C reactor-c checkout <tag>` (e.g. `ms-eval-v1.0` for TCRS 2026), then build.
 
 ## Documentation
 
