@@ -8,3 +8,7 @@ ms-eval/figures/
 __pycache__/
 *.pyc
 .DS_Store
+# LF build outputs at the eval root
+bin/
+include/
+ms-eval/lf-gen/
