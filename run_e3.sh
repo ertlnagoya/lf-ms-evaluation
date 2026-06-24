@@ -111,8 +111,8 @@ if [[ "$skip_compile" -eq 0 ]]; then
     [[ -n "$found" ]] && gen_dir="$(dirname "$(dirname "$found")")"
   fi
   if [[ -d "${gen_dir}/core/utils" && -d "${gen_dir}/include/core/utils" && -d "${gen_dir}/core/threaded" ]]; then
-    mkdir -p "${REACTOR_C}/include/core/utils"
-    cp "${ms_patch_dir}/master_scheduler.h" "${REACTOR_C}/include/core/utils/master_scheduler.h"
+    mkdir -p "${ROOT_DIR}/include/core/utils"
+    cp "${ms_patch_dir}/master_scheduler.h" "${ROOT_DIR}/include/core/utils/master_scheduler.h"
     cp "${ms_patch_dir}/core_utils_CMakeLists.txt" "${gen_dir}/core/utils/CMakeLists.txt"
     cp "${ms_patch_dir}/master_scheduler.c" "${gen_dir}/core/utils/master_scheduler.c"
     cp "${ms_patch_dir}/master_scheduler.h" "${gen_dir}/include/core/utils/master_scheduler.h"

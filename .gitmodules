@@ -1,0 +1,3 @@
+[submodule "reactor-c"]
+	path = reactor-c
+	url = https://github.com/ertlnagoya/reactor-c.git

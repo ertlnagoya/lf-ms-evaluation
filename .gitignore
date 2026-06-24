@@ -1,0 +1,10 @@
+src-gen/
+**/build/
+*.o
+ms-eval/results/
+ms-eval/logs/
+ms-eval/tcrs-data/
+ms-eval/figures/
+__pycache__/
+*.pyc
+.DS_Store
