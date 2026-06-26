@@ -31,14 +31,14 @@ git submodule update --init --recursive
 
 Requirements: `lfc` (Lingua Franca) on `PATH` (or `LFC=/path/to/lfc`), `cmake`,
 a C toolchain, Python 3 (+ `matplotlib`), and `util-linux` (`taskset`) for
-pinned/bare-metal runs.
+pinned/native real-hardware runs.
 
 ## Run
 
 ```bash
 ./run_e3.sh --steps 5 --load-factors 1.0        # quick build + MS-patch smoke test
 ./run_all.sh                                     # E1/E2/E3 end-to-end
-ms-eval/scripts/run_baremetal.sh backlog 2-3     # E5 overload onset (bare metal, cores 2-3)
+ms-eval/scripts/run_baremetal.sh backlog 2-3     # E5 overload onset (native real-hardware, cores 2-3)
 ms-eval/scripts/run_baremetal.sh final           # E4/E5/E6 main experiment
 ```
 
@@ -66,7 +66,7 @@ reported.
 |------|------------------|-------|-------------------------------|-------------|
 | 2026-03 | Technical Paper (`TechnicalPaper-MS-v1.1.pdf`) | A Semantics-Preserving Master Scheduler for Lingua Franca | `ms-v1.0` / `v1.0` → `6a5ba2fc` (2026-03-12) | E1, E2, E3 |
 | 2026-05 | [JSAE 2026 Annual Congress (Spring)](https://tech.jsae.or.jp/paperinfo/en/content/p202601.039/) / 自動車技術会 2026年春季大会 | A Semantics-Preserving Master Scheduler for Mixed-Criticality Control in Lingua Franca | `ms-v1.0` → `6a5ba2fc` (2026-03-12) | E1, E2, E3 |
-| 2026-06 | TCRS 2026 | Semantics-Preserving Controlled Degradation for Overload Control: Bounding Logical-Time Backlog in Lingua Franca | `ms-eval-v1.0` → `997a8df4` (2026-06-24) | E3, E4, E5, E6 |
+| 2026-06 | TCRS 2026 | Controlled Degradation, Not Dispatch Reordering: Semantics-Preserving Overload Control in Lingua Franca | `ms-eval-v1.0` → `997a8df4` (2026-06-24) | E3, E4, E5, E6 |
 
 All three share the same authors: **Yutaka Matsubara** (Nagoya University);
 **Wenhung Kevin Huang**, **Akihito Iwai** (DENSO CORPORATION).
@@ -78,12 +78,17 @@ To reproduce a publication's runtime exactly:
 
 | Component | Detail |
 |-----------|--------|
-| Host | MacBook Air 15-inch (Apple M3, 2024); 8 cores (4P + 4E); macOS 26.5.1 |
-| Execution | Docker Desktop 29.5.3 — Linux VM kernel 6.12.76-linuxkit (aarch64), 8 vCPUs, ~8 GB RAM |
-| LF compiler | `lfc` 0.11.1-SNAPSHOT |
-| Runtime | reactor-c tag `ms-eval-v1.0` (`997a8df4`) |
-| Repeats | E4 = 15, E5 = 15, E6 = 20 per condition; means with 95% CIs |
-| Period | P = 10 ms on the virtualized host; period-independence checked over P ∈ {5, 10, 20} ms |
+| Host | Raspberry Pi 5 (quad-core Arm Cortex-A76); 64-bit Raspberry Pi OS (run natively, no Docker) |
+| Kernel | `PREEMPT_RT` `6.18.34+rpt-rpi-v8-rt`; performance governor; cores 2,3 isolated; run pinned to all 4 cores |
+| Jitter | cyclictest worst-case scheduling latency ≤ 3 µs (core 2, 1 ms, 60 s) |
+| LF compiler | `lfc` 0.11.0 |
+| Runtime | reactor-c tag `ms-eval-v1.0` |
+| Workers | {1, 2} (a 4-core Pi; 4 workers would saturate, leaving no headroom for the runtime/MS threads) |
+| Repeats | E4/E5/E6 = 15 per condition; means with 95% CIs |
+| Period | natural P = 2 ms (main point); also confirmed at 1 ms (small residual at the capacity edge) and 10 ms |
+
+> An earlier internal run of the same harness used a Docker Linux container on a
+> MacBook Air (Apple M3); the native real-hardware Pi numbers above supersede it for TCRS 2026.
 
 The earlier Technical Paper / JSAE results (tag `ms-v1.0`) used a separate
 configuration (e.g. n = 30); see those papers for their setup.
@@ -96,8 +101,8 @@ configuration (e.g. n = 30); see those papers for their setup.
   (application JSONL and MS log) used by the parsers.
 - [`README_ms_performance_test.md`](README_ms_performance_test.md) — reproducible
   test guide (E1/E2/E3) and tagged-artifact reproduction steps.
-- [`ms-eval/RUN_BAREMETAL_RPI.md`](ms-eval/RUN_BAREMETAL_RPI.md) (and
-  [`.ja`](ms-eval/RUN_BAREMETAL_RPI.ja.md)) — bare-metal evaluation on Raspberry
+- [`ms-eval/RUN_NATIVE_RT_RPI.md`](ms-eval/RUN_NATIVE_RT_RPI.md) (and
+  [`.ja`](ms-eval/RUN_NATIVE_RT_RPI.ja.md)) — native real-hardware evaluation on Raspberry
   Pi: OS setup, PREEMPT_RT kernel, core isolation, run, and the natural 1 ms check.
 - [`reactor-c/README_ms.md`](reactor-c/README_ms.md) — MS implementation summary
   (Phases 0–4), in the runtime submodule.

@@ -1,4 +1,55 @@
-# MS Evaluation Test Guide (E1 / E2)
+# MS Evaluation — Reproduction Guide
+
+This harness spans two generations of the work; use the section matching the
+result you want to reproduce. The latest (TCRS 2026) procedure is below; the
+earlier Technical Paper / JSAE procedure (E1/E2/E3) is kept further down for
+reproducing those papers.
+
+## Latest — TCRS 2026 (native execution on physical hardware)
+
+Paper: *Controlled Degradation, Not Dispatch Reordering: Semantics-Preserving
+Overload Control in Lingua Franca* (TCRS 2026 / IEEE Embedded Systems Letters).
+
+- **Runtime**: the `reactor-c` submodule at tag `ms-eval-v1.0`; `lfc` 0.11.0.
+- **Platform**: Raspberry Pi 5 (quad-core Arm Cortex-A76), 64-bit Raspberry Pi OS
+  with a `PREEMPT_RT` kernel and the performance governor — run natively
+  (non-virtualized). Measured worst-case scheduling latency ≤ 3 µs (cyclictest).
+- **Operating point**: period P = 2 ms (also confirmed at 1 ms and 10 ms),
+  workers ∈ {1, 2}, per-tag LC budget b = 2, overload thresholds
+  θ_ℓ = 300 µs / θ_q = 2, n = 15 runs per condition.
+- **Experiments**: E4 (overload validation + capacity model), E5 (worker sweep +
+  backlog propagation — Table I, both figures), E6 (budget sensitivity).
+
+The full procedure — OS install, building/selecting the PREEMPT_RT kernel, core
+isolation, the run, and the natural-period (1–2 ms) check — is in
+[`ms-eval/RUN_NATIVE_RT_RPI.md`](ms-eval/RUN_NATIVE_RT_RPI.md)
+(Japanese: [`ms-eval/RUN_NATIVE_RT_RPI.ja.md`](ms-eval/RUN_NATIVE_RT_RPI.ja.md)).
+
+Quick start:
+
+```bash
+git clone --recursive https://github.com/ertlnagoya/lf-ms-evaluation.git
+cd lf-ms-evaluation
+./run_e3.sh --steps 5 --load-factors 1.0           # build + MS-patch smoke test
+ms-eval/scripts/run_baremetal.sh final 0-3         # E4/E5/E6 main run (cores 0-3)
+python3 ms-eval/scripts/plot_paper_figs.py         # regenerate fig_hc_miss / fig_backlog
+```
+
+The raw result CSVs and figures behind the paper's tables/figures are archived
+under [`ms-eval/paper-data/`](ms-eval/paper-data/) (`e5/`, `e6/`, `figures/`,
+`validation/`), with a manifest in `ms-eval/paper-data/README.md`.
+
+## Earlier — Technical Paper / JSAE (E1/E2/E3, reactor-c monorepo + Docker)
+
+The guide below reproduces the **E1/E2/E3** experiments of the earlier Technical
+Paper / JSAE versions. It assumes the original **reactor-c monorepo** (which
+carries the `Dockerfile`) at tag `ms-v1.0`; the `git` and `docker` commands in it
+target that repository, not this evaluation repo. The result CSVs/figures it
+mentions correspond to that Docker (x86-64) setup, not the Raspberry Pi runs above.
+
+---
+
+### MS Evaluation Test Guide (E1 / E2 / E3) — reactor-c monorepo (Docker)
 
 This document describes reproducible steps for the current MS performance evaluation:
 
