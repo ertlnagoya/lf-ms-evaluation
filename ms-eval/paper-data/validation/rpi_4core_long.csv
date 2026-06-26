@@ -1,0 +1,4 @@
+rep,load_factor,ts,baseline_hc_miss_rate,ms_hc_miss_rate,degrade_hc_miss_rate,baseline_hc_latency_mean_us,ms_hc_latency_mean_us,degrade_hc_latency_mean_us,baseline_hc_latency_p95_us,ms_hc_latency_p95_us,degrade_hc_latency_p95_us,baseline_lc_completion_ratio,ms_lc_completion_ratio,degrade_lc_completion_ratio,degrade_actions,degrade_fallback_count,degrade_fallback_missing_metadata,degrade_fallback_no_candidate,degrade_violations
+1,4.00,20260625_125017,100.000,100.000,0.000,112908.817,113659.571,6024.091,208071.754,209251.666,6708.081,100.000,100.000,50.000,300,0,0,0,1
+2,4.00,20260625_125031,100.000,100.000,0.000,112920.217,113604.045,5919.202,208398.264,209068.316,6701.457,100.000,100.000,50.000,300,0,0,0,0
+3,4.00,20260625_125038,100.000,100.000,0.000,112856.092,116621.192,6034.380,207892.398,212538.209,6944.797,100.000,100.000,50.000,300,0,0,0,1
