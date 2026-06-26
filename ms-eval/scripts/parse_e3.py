@@ -76,6 +76,7 @@ def main() -> None:
         hc_latencies_us.sort()
         hc_latency_mean_us = sum(hc_latencies_us) / len(hc_latencies_us) if hc_latencies_us else 0.0
         if hc_latencies_us:
+            # nearest-rank 95th percentile of HC (completion - logical release)
             idx = int(round(0.95 * (len(hc_latencies_us) - 1)))
             hc_latency_p95_us = hc_latencies_us[idx]
         else:
@@ -83,6 +84,11 @@ def main() -> None:
 
         ms_events = parse_ms_log(ms_log)
         degraded = 0
+        # NOTE: the column named "violations" counts event=mismatch, i.e. MS/runtime
+        # PICK MISMATCHES (the runtime ran a different ready reaction than the MS's
+        # advisory pick = a different valid intra-tag order). These are BENIGN -- LF
+        # determinism holds by construction -- and are NOT semantic/deadline
+        # violations. The name is kept only for CSV backward-compatibility.
         violations = 0
         fallback_count = 0
         fallback_missing_metadata = 0

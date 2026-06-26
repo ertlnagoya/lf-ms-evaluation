@@ -39,6 +39,10 @@ def read_mode_rows(path: Path) -> dict[tuple[str, float], dict]:
 
 
 def ci95(values: list[float]) -> tuple[float, float]:
+    # Normal-approx 95% CI: mean +/- 1.96*sd/sqrt(n). For the small n used here
+    # (n=15) a Student-t quantile (t_0.975,14 ~ 2.145) gives slightly wider, more
+    # conservative bounds; the normal approx matches the paper's reported
+    # intervals and is kept for reproducibility.
     if not values:
         return (math.nan, math.nan)
     if len(values) == 1:
@@ -158,6 +162,9 @@ def main() -> None:
         by_load[load]["fallbacks"].append(float(row[16]))
         by_load[load]["fallback_missing_metadata"].append(float(row[17]))
         by_load[load]["fallback_no_candidate"].append(float(row[18]))
+        # "violations"/"violations_mean" == event=mismatch (MS/runtime pick
+        # mismatch: a different valid intra-tag order; benign, LF determinism
+        # holds by construction). NOT semantic/deadline violations.
         by_load[load]["violations"].append(float(row[19]))
 
     summary_path = results_dir / f"{args.out_prefix}_summary.csv"

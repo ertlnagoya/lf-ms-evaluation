@@ -15,6 +15,8 @@ import subprocess
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import matplotlib as _mpl  # RCBUMP
+_mpl.rcParams.update({"font.size":11,"axes.labelsize":11,"xtick.labelsize":10,"ytick.labelsize":10,"legend.fontsize":9,"lines.linewidth":1.5,"lines.markersize":4})
 
 
 def _make_xbb(pdf_path):
@@ -64,9 +66,11 @@ def fig_hc_miss():
         x = [f(r, "load_factor") for r in rows]
         base = [f(r, "baseline_hc_miss_mean") for r in rows]
         deg = [f(r, "degrade_hc_miss_mean") for r in rows]
+        ms = [f(r, "ms_hc_miss_mean") for r in rows]
         m, lab = styles[w]
         ax.plot(x, base, m + "--", color="tab:red", alpha=0.5 + 0.15 * (w == 2), markersize=4)
         ax.plot(x, deg, m + "-", color="tab:blue", markersize=4, label=lab)
+        ax.plot(x, ms, m + ":", color="tab:orange", alpha=0.8, markersize=3)
     ax.set_xlabel("Load factor")
     ax.set_ylabel("HC deadline-miss rate (%)")
     ax.set_ylim(-5, 105)
