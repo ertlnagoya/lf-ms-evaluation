@@ -7,6 +7,8 @@ This evaluation suite uses two log streams per run:
 
 Both logs are stored under `ms-eval/logs/<exp>/<timestamp>/<run>/`.
 
+日本語版は [LOG_FORMAT.ja.md](LOG_FORMAT.ja.md) にあります。
+
 ## App log (JSONL)
 Each line is a JSON object with a `type` field.
 

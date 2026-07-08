@@ -11,6 +11,8 @@ This repository is the evaluation artifact base for the accompanying paper. The
 evaluated runtime is pinned as the [`reactor-c`](https://github.com/ertlnagoya/reactor-c)
 submodule, so a checkout reproduces exactly which MS implementation was measured.
 
+日本語版は [README.ja.md](README.ja.md) にあります。
+
 ## Repository layout
 
 ```
@@ -97,7 +99,8 @@ configuration (e.g. n = 30); see those papers for their setup.
 
 - [`ms-eval/README.md`](ms-eval/README.md) — evaluation suite details: quick
   start, evaluation programs, requirements, output files.
-- [`ms-eval/LOG_FORMAT.md`](ms-eval/LOG_FORMAT.md) — structured log format
+- [`ms-eval/LOG_FORMAT.md`](ms-eval/LOG_FORMAT.md)
+  (Japanese: [`.ja`](ms-eval/LOG_FORMAT.ja.md)) — structured log format
   (application JSONL and MS log) used by the parsers.
 - [`README_ms_performance_test.md`](README_ms_performance_test.md) — reproducible
   test guide (E1/E2/E3) and tagged-artifact reproduction steps.

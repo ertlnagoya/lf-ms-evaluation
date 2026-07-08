@@ -5,6 +5,8 @@ This folder contains a reproducible evaluation harness for the paper
 
 It generates LF benchmarks, runs experiments E1/E2/E3, parses logs to CSV, and produces plots.
 
+日本語版は [README.ja.md](README.ja.md) にあります。
+
 ## Quick start
 From repo root:
 

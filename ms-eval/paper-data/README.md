@@ -4,6 +4,8 @@ Result CSVs and figures behind the paper's tables/figures, from the Raspberry
 Pi 5 (PREEMPT_RT) runs: reactor-c tag ms-eval-v1.0, lfc 0.11.0, P=2 ms,
 workers {1,2}, n=15. Per-condition raw rows are in the *_long.csv files.
 
+日本語版は [README.ja.md](README.ja.md) にあります。
+
 - e5/  worker sweep (tcrs_bk_backlog_w{1,2}): per-worker summary & long CSVs and
        the combined backlog CSV — behind Table I, fig_hc_miss, fig_backlog.
 - e6/  budget sensitivity (tcrs_e6_policy_*) — behind the budget paragraph.
