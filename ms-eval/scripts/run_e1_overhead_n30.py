@@ -11,7 +11,7 @@ from pathlib import Path
 from statistics import mean, stdev
 from typing import Optional
 
-ROOT = Path("/Users/yutaka/program/reactor-c")
+ROOT = Path(__file__).resolve().parents[2]
 EVAL_DIR = ROOT / "ms-eval"
 PARSE_E1 = ROOT / "ms-eval/scripts/parse_e1.py"
 

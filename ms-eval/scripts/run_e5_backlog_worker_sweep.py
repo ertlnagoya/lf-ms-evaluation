@@ -69,7 +69,7 @@ def main() -> None:
     ap.add_argument("--degrade-lag-ns", type=int, default=150000)
     ap.add_argument("--degrade-ready-q-len", type=int, default=2)
     ap.add_argument("--drop-initial-tags", type=int, default=20)
-    ap.add_argument("--cmake-bin-dir", default="/Users/yutaka/Library/Python/3.9/bin")
+    ap.add_argument("--cmake-bin-dir", default=os.environ.get("CMAKE_BIN_DIR", ""))
     ap.add_argument("--out-prefix", default="tcrs_e5_backlog")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()

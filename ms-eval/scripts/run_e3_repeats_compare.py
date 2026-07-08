@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from statistics import mean, stdev
 
-ROOT = Path('/Users/yutaka/program/reactor-c')
+ROOT = Path(__file__).resolve().parents[2]
 PARSE_E3 = ROOT / 'ms-eval/scripts/parse_e3.py'
 
 

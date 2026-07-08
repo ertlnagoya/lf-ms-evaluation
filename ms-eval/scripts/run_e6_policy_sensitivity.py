@@ -56,7 +56,7 @@ def main() -> None:
     ap.add_argument("--lc-work-us", type=int, default=220)
     ap.add_argument("--deadline-us", type=int, default=900)
     ap.add_argument("--period-us", type=int, default=1000)
-    ap.add_argument("--cmake-bin-dir", default="/Users/yutaka/Library/Python/3.9/bin")
+    ap.add_argument("--cmake-bin-dir", default=os.environ.get("CMAKE_BIN_DIR", ""))
     ap.add_argument("--out-prefix", default="tcrs_e6_policy")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()

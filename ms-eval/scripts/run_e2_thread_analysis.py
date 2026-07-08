@@ -5,7 +5,7 @@ import re
 import subprocess
 from pathlib import Path
 
-ROOT = Path("/Users/yutaka/program/reactor-c")
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def run_cmd(cmd: str) -> str:

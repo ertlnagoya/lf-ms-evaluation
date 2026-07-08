@@ -59,7 +59,9 @@ Key events used by the parsers:
 - `event=ready`: reaction enters ready set; includes `logical` and `reaction_index`.
 - `event=ready_drop`: ready entry removed (e.g., skip degradation).
 - `event=pick_next`: scheduler decision; includes `logical` and `candidate`.
-- `event=mismatch` / `event=runtime_selected_missing`: guard/fallback violations.
+- `event=mismatch`: runtime ran a different ready reaction than the MS pick (a benign
+  different valid intra-tag order; NOT a semantics or deadline violation).
+- `event=runtime_selected_missing`: runtime executed a reaction the MS did not track.
 - `event=degrade`: degradation action applied.
 
 ## Notes / TODO
